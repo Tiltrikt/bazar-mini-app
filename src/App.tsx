@@ -23,20 +23,14 @@ export function App() {
   };
 
   const handleClick = useCallback(() => {
-    console.log(JSON.stringify(
-      {
-        query: query,
-        minPrice: minPrice,
-        maxPrice: maxPrice
-      }
-    ))
-    sendData(JSON.stringify(
-      {
-        query: query,
-        minPrice: minPrice,
-        maxPrice: maxPrice
-      }
-    ));
+    // sendData(JSON.stringify(
+    //   {
+    //     query: query,
+    //     minPrice: minPrice,
+    //     maxPrice: maxPrice
+    //   }
+    // ));
+    sendData(query);
   }, [query, minPrice, maxPrice]);
 
   return (
