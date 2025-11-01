@@ -6,7 +6,7 @@ import {BackButton} from "@/components/BackButton.ts";
 export function App() {
   const lp = useLaunchParams();
   const isDark = useSignal(miniApp.isDark);
-  backButton.mount;
+  backButton.mount();
 
   return (
     <AppRoot
