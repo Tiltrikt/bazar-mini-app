@@ -8,6 +8,7 @@ export interface ElemFn {
   (elem: string, ...mods: any): string;
 }
 
+
 /**
  * Applies mods to the specified element.
  * @param element - element name.
