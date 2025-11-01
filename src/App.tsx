@@ -10,13 +10,13 @@ export function App() {
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
 
-  const handleSetMinPrice = (e) => {
+  const handleSetMinPrice = (e: any) => {
     const value = e.target.value;
     const onlyNumbers = value.replace(/\D/g, "");
     setMinPrice(onlyNumbers);
   };
 
-  const handleSetMaxPrice = (e) => {
+  const handleSetMaxPrice = (e: any) => {
     const value = e.target.value;
     const onlyNumbers = value.replace(/\D/g, "");
     setMaxPrice(onlyNumbers);
