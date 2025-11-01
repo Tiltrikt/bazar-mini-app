@@ -1,4 +1,4 @@
-import {useState, useCallback} from 'react';
+import {useState} from 'react';
 import {useLaunchParams, useSignal, miniApp, sendData} from '@tma.js/sdk-react';
 import {AppRoot, Input, List} from '@telegram-apps/telegram-ui';
 import {MainButton} from "@/components/MainButton.ts";
@@ -22,15 +22,16 @@ export function App() {
     setMaxPrice(onlyNumbers);
   };
 
-  const handleClick = useCallback(() => {
+  const handleClick = () => {
+    console.log(query)
     sendData(JSON.stringify(
       {
         query: query,
         minPrice: minPrice,
         maxPrice: maxPrice
       }
-    ));
-  }, [query, minPrice, maxPrice]);
+    ))
+  };
 
   return (
     <AppRoot
