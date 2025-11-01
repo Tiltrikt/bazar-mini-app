@@ -23,15 +23,21 @@ export function App() {
   };
 
   const handleClick = useCallback(() => {
-    sendData("hello")
+    sendData(JSON.stringify(
+      {
+        query: query,
+        minPrice: minPrice,
+        maxPrice: maxPrice
+      }
+    ));
   }, []);
 
   return (
-  <AppRoot
-    appearance={isDark ? 'dark' : 'light'}
-    platform={['macos', 'ios'].includes(lp.tgWebAppPlatform) ? 'ios' : 'base'}
-  >
-    <List>
+    <AppRoot
+      appearance={isDark ? 'dark' : 'light'}
+      platform={['macos', 'ios'].includes(lp.tgWebAppPlatform) ? 'ios' : 'base'}
+    >
+      <List>
         <Input
           value={query}
           onChange={e => setQuery(e.target.value)}
@@ -49,10 +55,13 @@ export function App() {
           placeholder="Max price"
           inputMode="numeric"
         />
-    </List>
+      </List>
 
-    <MainButton onClick={handleClick}/>
-  </AppRoot>
-)
-  ;
+      <MainButton
+        onClick={handleClick}
+        text="Create new Agent"
+      />
+    </AppRoot>
+  )
+    ;
 }
