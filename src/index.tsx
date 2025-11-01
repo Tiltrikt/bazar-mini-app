@@ -3,7 +3,7 @@ import '@telegram-apps/telegram-ui/dist/styles.css';
 
 import ReactDOM from 'react-dom/client';
 import { StrictMode } from 'react';
-import { retrieveLaunchParams } from '@tma.js/sdk-react';
+import { retrieveLaunchParams, mainButton } from '@tma.js/sdk-react';
 
 import { Root } from '@/components/Root.tsx';
 import { EnvUnsupported } from '@/components/EnvUnsupported.tsx';
@@ -28,6 +28,7 @@ try {
     eruda: debug && ['ios', 'android'].includes(platform),
     mockForMacOS: platform === 'macos',
   })
+    .then(() => mainButton.mount())
     .then(() => {
       root.render(
         <StrictMode>

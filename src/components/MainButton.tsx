@@ -1,20 +1,20 @@
 import { useEffect } from 'react';
-import { backButton, useSignal } from '@tma.js/sdk-react';
+import { mainButton, useSignal } from '@tma.js/sdk-react';
 
 /**
  * Component which controls the Back Button visibility.
  */
-export function BackButton() {
-  const isVisible = useSignal(backButton.isVisible);
+export function MainButton() {
+  const isVisible = useSignal(mainButton.isVisible);
 
   useEffect(() => {
     console.log('The button is', isVisible ? 'visible' : 'invisible');
   }, [isVisible]);
 
   useEffect(() => {
-    backButton.show();
+    mainButton.show();
     return () => {
-      backButton.hide();
+      mainButton.hide();
     };
   }, []);
 
