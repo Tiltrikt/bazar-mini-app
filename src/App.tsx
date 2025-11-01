@@ -1,6 +1,6 @@
 import { useLaunchParams, useSignal, miniApp } from '@tma.js/sdk-react';
 import { AppRoot } from '@telegram-apps/telegram-ui';
-import {MainButton} from "@/components/MainButton.tsx";
+import {MainButton} from "@/components/MainButton.ts";
 
 
 export function App() {
