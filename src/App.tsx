@@ -30,7 +30,7 @@ export function App() {
         maxPrice: maxPrice
       }
     ));
-  }, []);
+  }, [query, minPrice, maxPrice]);
 
   return (
     <AppRoot
