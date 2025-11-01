@@ -1,5 +1,5 @@
 import {useState, useCallback} from 'react';
-import {useLaunchParams, useSignal, miniApp} from '@tma.js/sdk-react';
+import {useLaunchParams, useSignal, miniApp, sendData} from '@tma.js/sdk-react';
 import {AppRoot, Input, List} from '@telegram-apps/telegram-ui';
 import {MainButton} from "@/components/MainButton.ts";
 
@@ -23,13 +23,7 @@ export function App() {
   };
 
   const handleClick = useCallback(() => {
-    const tg = window.Telegram?.WebApp;
-
-    if (tg) {
-      tg.sendData(JSON.stringify({ message: "Привет из Mini App!" }));
-    } else {
-      console.warn("Telegram WebApp не найден (запусти через Telegram)");
-    }
+    sendData("hello")
   }, []);
 
   return (
