@@ -14,7 +14,6 @@ export function App() {
       platform={['macos', 'ios'].includes(lp.tgWebAppPlatform) ? 'ios' : 'base'}
     >
       <BackButton>
-        Hello
       </BackButton>
     </AppRoot>
   );
