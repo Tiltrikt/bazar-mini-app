@@ -1,5 +1,5 @@
 import { useLaunchParams, useSignal, miniApp, backButton } from '@tma.js/sdk-react';
-import { AppRoot, List } from '@telegram-apps/telegram-ui';
+import { AppRoot } from '@telegram-apps/telegram-ui';
 import {BackButton} from "@/components/BackButton.ts";
 
 
