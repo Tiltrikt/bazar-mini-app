@@ -23,7 +23,13 @@ export function App() {
   };
 
   const handleClick = useCallback(() => {
-    console.log(minPrice, minPrice, query);
+    const tg = window.Telegram?.WebApp;
+
+    if (tg) {
+      tg.sendData(JSON.stringify({ message: "Привет из Mini App!" }));
+    } else {
+      console.warn("Telegram WebApp не найден (запусти через Telegram)");
+    }
   }, []);
 
   return (
