@@ -8,6 +8,7 @@ export function App() {
   const lp = useLaunchParams();
   const isDark = useSignal(miniApp.isDark);
   const [query, setQuery] = useState('');
+  const [test, setTest] = useState('');
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
 
@@ -24,8 +25,15 @@ export function App() {
   };
 
   const handleClick = useCallback(() => {
-    sendData(query);
-  }, [query, minPrice, maxPrice]);
+    const data: string = JSON.stringify({
+      query: query,
+      minPrice: minPrice,
+      maxPrice: maxPrice
+    })
+    setTest(data);
+    console.log("Clicker");
+    sendData(data);
+  }, [query, maxPrice, minPrice]);
 
   return (
     <AppRoot
@@ -39,7 +47,7 @@ export function App() {
         <img
           alt="Telegram sticker"
           src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Moon_rotating_full_220px.gif"
-          style={{ display: 'block', width: '144px', height: '144px' }}
+          style={{display: 'block', width: '144px', height: '144px'}}
         />
       </Placeholder>
       <List>
@@ -61,6 +69,7 @@ export function App() {
           placeholder="Max price"
           inputMode="numeric"
         />
+        <Input value={test}></Input>
       </List>
 
       <MainButton
