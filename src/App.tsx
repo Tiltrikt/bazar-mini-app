@@ -6,6 +6,7 @@ import {Icon12Search} from "@/icons/12/search.tsx";
 
 export function App() {
   const launchParams = useLaunchParams();
+  const initData = useRawInitData();
   const isDark = useSignal(miniApp.isDark);
   const [query, setQuery] = useState('');
   const [minPrice, setMinPrice] = useState('');
@@ -28,7 +29,7 @@ export function App() {
       query: query,
       minPrice: minPrice,
       maxPrice: maxPrice,
-      initData: useRawInitData()
+      initData: initData
     });
     sendData.ifAvailable(data);
   }, [query, minPrice, maxPrice]);
