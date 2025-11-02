@@ -1,21 +1,32 @@
-import {useRef} from 'react';
-import {useLaunchParams, useSignal, miniApp, sendData} from '@tma.js/sdk-react';
+import {miniApp, sendData, useLaunchParams, useSignal} from '@tma.js/sdk-react';
 import {AppRoot, Input, List, Placeholder} from '@telegram-apps/telegram-ui';
 import {MainButton} from "@/components/MainButton.ts";
+import {Icon12Search} from "@/icons/12/search.tsx";
 
 export function App() {
   const lp = useLaunchParams();
   const isDark = useSignal(miniApp.isDark);
-  const queryRef = useRef("ou");
-  const minPriceRef = useRef("blyat");
-  const maxPriceRef = useRef("");
+
+  let query: string = '';
+  let minPrice: number = 0;
+  let maxPrice: number = 0;
+
+  const handleSetMinPrice = (e: any) => {
+    const value = e.target.value;
+    minPrice = value.replace(/\D/g, "");
+  };
+
+  const handleSetMaxPrice = (e: any) => {
+    const value = e.target.value;
+    maxPrice = value.replace(/\D/g, "");
+  };
 
   const handleClick = () => {
-    const data = JSON.stringify({
-      query: queryRef.current,
-      minPrice: minPriceRef.current,
-      maxPrice: maxPriceRef.current,
-    });
+    const data: string = JSON.stringify({
+      query: query,
+      minPrice: minPrice,
+      maxPrice: maxPrice
+    })
     sendData.ifAvailable(data);
   };
 
@@ -36,23 +47,23 @@ export function App() {
       </Placeholder>
       <List>
         <Input
-          defaultValue={queryRef.current}
-          onChange={e => (queryRef.current = e.target.value)}
+          before={<Icon12Search/>}
+          value={query}
+          onChange={e => query = e.target.value}
           placeholder="Search query"
         />
         <Input
-          defaultValue={minPriceRef.current}
-          onChange={e => (minPriceRef.current = e.target.value.replace(/\D/g, ""))}
+          value={minPrice}
+          onChange={e => handleSetMinPrice(e)}
           placeholder="Min price"
           inputMode="numeric"
         />
         <Input
-          defaultValue={maxPriceRef.current}
-          onChange={e => (maxPriceRef.current = e.target.value.replace(/\D/g, ""))}
+          value={maxPrice}
+          onChange={e => handleSetMaxPrice(e)}
           placeholder="Max price"
           inputMode="numeric"
         />
-
       </List>
 
       <MainButton
