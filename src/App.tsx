@@ -8,7 +8,6 @@ export function App() {
   const lp = useLaunchParams();
   const isDark = useSignal(miniApp.isDark);
   const [query, setQuery] = useState('');
-  const [test, setTest] = useState('');
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
 
@@ -26,11 +25,10 @@ export function App() {
 
   const handleClick = () => {
     const data: string = JSON.stringify({
-      query: "query",
-      minPrice: "5",
-      maxPrice: "15"
+      query: query,
+      minPrice: minPrice,
+      maxPrice: maxPrice
     })
-    setTest(data);
     sendData.ifAvailable(data);
   };
 
@@ -68,7 +66,6 @@ export function App() {
           placeholder="Max price"
           inputMode="numeric"
         />
-        <Input value={test}></Input>
       </List>
 
       <MainButton
