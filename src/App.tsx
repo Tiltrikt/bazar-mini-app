@@ -1,17 +1,22 @@
 import {useCallback, useState} from 'react';
-import {useLaunchParams, useRawInitData, useSignal, miniApp, sendData} from '@tma.js/sdk-react';
+import {
+  useLaunchParams,
+  useSignal,
+  miniApp,
+  sendData,
+  retrieveLaunchParams
+} from '@tma.js/sdk-react';
 import {AppRoot, Input, List, Placeholder} from '@telegram-apps/telegram-ui';
 import {MainButton} from "@/components/MainButton.ts";
 import {Icon12Search} from "@/icons/12/search.tsx";
 
 export function App() {
   const launchParams = useLaunchParams();
-  const initData = useRawInitData();
+  const { initDataRaw } = retrieveLaunchParams();
   const isDark = useSignal(miniApp.isDark);
-  const [query, setQuery] = useState('r');
+  const [query, setQuery] = useState('rak');
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
-  const [test, setTest] = useState('');
 
   const handleSetMinPrice = (e: any) => {
     const value = e.target.value;
@@ -26,15 +31,14 @@ export function App() {
   };
 
   const handleClick = useCallback(() => {
-    setTest(initData!)
     const data: string = JSON.stringify({
       query: query,
       minPrice: minPrice,
       maxPrice: maxPrice,
-      initData: initData
+      initData: initDataRaw
     });
     sendData.ifAvailable(data);
-  }, [query, minPrice, maxPrice, initData]);
+  }, [query, minPrice, maxPrice, initDataRaw]);
 
   return (
     <AppRoot
@@ -70,15 +74,11 @@ export function App() {
           placeholder="Max price"
           inputMode="numeric"
         />
-        <Input
-          value={test}
-        />
       </List>
 
       <MainButton
         onClick={handleClick}
         text="Create new Agent"
-        disabled={!initData}
       />
     </AppRoot>
   )
