@@ -8,7 +8,7 @@ export function App() {
   const launchParams = useLaunchParams();
   const initData = useRawInitData();
   const isDark = useSignal(miniApp.isDark);
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState('r');
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
 
@@ -32,7 +32,7 @@ export function App() {
       initData: initData
     });
     sendData.ifAvailable(data);
-  }, [query, minPrice, maxPrice]);
+  }, [query, minPrice, maxPrice, initData]);
 
   return (
     <AppRoot
