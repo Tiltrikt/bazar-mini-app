@@ -15,6 +15,7 @@ export function App() {
   const [query, setQuery] = useState('rakaaa');
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
+  const [agentName, setAgentName] = useState('');
 
   const handleSetMinPrice = (e: any) => {
     const value = e.target.value;
@@ -33,10 +34,11 @@ export function App() {
       query: query,
       minPrice: minPrice,
       maxPrice: maxPrice,
-      initData: launchParams.tgWebAppVersion
+      agentName: agentName,
+      initData: launchParams.tgWebAppData!.chat!
     });
     sendData.ifAvailable(data);
-  }, [query, minPrice, maxPrice, launchParams]);
+  }, [query, minPrice, maxPrice, agentName, launchParams]);
 
   return (
     <AppRoot
@@ -71,6 +73,11 @@ export function App() {
           onChange={e => handleSetMaxPrice(e)}
           placeholder="Max price"
           inputMode="numeric"
+        />
+        <Input
+          value={agentName}
+          onChange={e => setAgentName(e.target.value)}
+          placeholder="Agent name"
         />
       </List>
 
