@@ -79,6 +79,7 @@ export function App() {
       <MainButton
         onClick={handleClick}
         text="Create new Agent"
+        disabled={!retrieveRawInitData()}
       />
     </AppRoot>
   )
