@@ -2,6 +2,7 @@ import {useState, useCallback} from 'react';
 import {useLaunchParams, useSignal, miniApp, sendData} from '@tma.js/sdk-react';
 import {AppRoot, Input, List} from '@telegram-apps/telegram-ui';
 import {MainButton} from "@/components/MainButton.ts";
+import {Icon12Search} from "@/icons/12/search.tsx";
 
 export function App() {
   const lp = useLaunchParams();
@@ -39,6 +40,7 @@ export function App() {
     >
       <List>
         <Input
+          before={<Icon12Search/>}
           value={query}
           onChange={e => setQuery(e.target.value)}
           placeholder="Search query"
