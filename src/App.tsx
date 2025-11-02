@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useRef} from 'react';
 import {useLaunchParams, useSignal, miniApp, sendData} from '@tma.js/sdk-react';
 import {AppRoot, Input, List, Placeholder} from '@telegram-apps/telegram-ui';
 import {MainButton} from "@/components/MainButton.ts";
@@ -7,28 +7,20 @@ import {Icon12Search} from "@/icons/12/search.tsx";
 export function App() {
   const lp = useLaunchParams();
   const isDark = useSignal(miniApp.isDark);
-  const [query, setQuery] = useState('suka');
-  const [minPrice, setMinPrice] = useState('blyat');
-  const [maxPrice, setMaxPrice] = useState('');
+  const queryRef = useRef("ou");
+  const minPriceRef = useRef("blyat");
+  const maxPriceRef = useRef("");
 
-  const handleSetMinPrice = (e: any) => {
-    const value = e.target.value;
-    const onlyNumbers = value.replace(/\D/g, "");
-    setMinPrice(onlyNumbers);
-  };
-
-  const handleSetMaxPrice = (e: any) => {
-    const value = e.target.value;
-    const onlyNumbers = value.replace(/\D/g, "");
-    setMaxPrice(onlyNumbers);
-  };
+  const setQuery = (e: any) => (queryRef.current = e.target.value);
+  const handleSetMinPrice = (e: any) => (minPriceRef.current = e.target.value.replace(/\D/g, ""));
+  const handleSetMaxPrice = (e: any) => (maxPriceRef.current = e.target.value.replace(/\D/g, ""));
 
   const handleClick = () => {
-    const data: string = JSON.stringify({
-      query: query,
-      minPrice: minPrice,
-      maxPrice: maxPrice
-    })
+    const data = JSON.stringify({
+      query: queryRef.current,
+      minPrice: minPriceRef.current,
+      maxPrice: maxPriceRef.current,
+    });
     sendData.ifAvailable(data);
   };
 
