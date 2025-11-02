@@ -4,7 +4,7 @@ import {
   useSignal,
   miniApp,
   sendData,
-  retrieveLaunchParams
+  retrieveRawInitData
 } from '@tma.js/sdk-react';
 import {AppRoot, Input, List, Placeholder} from '@telegram-apps/telegram-ui';
 import {MainButton} from "@/components/MainButton.ts";
@@ -13,7 +13,7 @@ import {Icon12Search} from "@/icons/12/search.tsx";
 export function App() {
   const launchParams = useLaunchParams();
   const isDark = useSignal(miniApp.isDark);
-  const [query, setQuery] = useState('raka');
+  const [query, setQuery] = useState('rakaaa');
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
 
@@ -30,7 +30,7 @@ export function App() {
   };
 
   const handleClick = useCallback(() => {
-    const { initDataRaw } = retrieveLaunchParams();
+    const initDataRaw = retrieveRawInitData();
     const data: string = JSON.stringify({
       query: query,
       minPrice: minPrice,
@@ -79,6 +79,7 @@ export function App() {
       <MainButton
         onClick={handleClick}
         text="Create new Agent"
+        disabled
       />
     </AppRoot>
   )
