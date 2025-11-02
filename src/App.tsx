@@ -26,16 +26,13 @@ export function App() {
 
   const handleClick = useCallback(() => {
     const data: string = JSON.stringify({
-      query: query,
-      minPrice: minPrice,
-      maxPrice: maxPrice
+      query: "query",
+      minPrice: "5",
+      maxPrice: "15"
     })
     setTest(data);
-    console.log("Clicker");
-    if (sendData.isAvailable()) {
-      sendData(data);
-    }
-  }, [query, maxPrice, minPrice]);
+    sendData.ifAvailable(data)
+  }, [query, minPrice, maxPrice]);
 
   return (
     <AppRoot
