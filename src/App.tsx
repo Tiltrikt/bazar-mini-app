@@ -1,4 +1,5 @@
-import {miniApp, sendData, useLaunchParams, useSignal} from '@tma.js/sdk-react';
+import {useState} from 'react';
+import {useLaunchParams, useSignal, miniApp, sendData} from '@tma.js/sdk-react';
 import {AppRoot, Input, List, Placeholder} from '@telegram-apps/telegram-ui';
 import {MainButton} from "@/components/MainButton.ts";
 import {Icon12Search} from "@/icons/12/search.tsx";
@@ -6,19 +7,20 @@ import {Icon12Search} from "@/icons/12/search.tsx";
 export function App() {
   const lp = useLaunchParams();
   const isDark = useSignal(miniApp.isDark);
-
-  let query: string = '';
-  let minPrice: number = 0;
-  let maxPrice: number = 0;
+  const [query, setQuery] = useState('');
+  const [minPrice, setMinPrice] = useState('');
+  const [maxPrice, setMaxPrice] = useState('');
 
   const handleSetMinPrice = (e: any) => {
     const value = e.target.value;
-    minPrice = value.replace(/\D/g, "");
+    const onlyNumbers = value.replace(/\D/g, "");
+    setMinPrice(onlyNumbers);
   };
 
   const handleSetMaxPrice = (e: any) => {
     const value = e.target.value;
-    maxPrice = value.replace(/\D/g, "");
+    const onlyNumbers = value.replace(/\D/g, "");
+    setMaxPrice(onlyNumbers);
   };
 
   const handleClick = () => {
@@ -49,7 +51,7 @@ export function App() {
         <Input
           before={<Icon12Search/>}
           value={query}
-          onChange={e => query = e.target.value}
+          onChange={e => setQuery(e.target.value)}
           placeholder="Search query"
         />
         <Input
@@ -69,6 +71,9 @@ export function App() {
       <MainButton
         onClick={handleClick}
         text="Create new Agent"
+        query={query}
+        minPrice={minPrice}
+        maxPrice={maxPrice}
       />
     </AppRoot>
   )
