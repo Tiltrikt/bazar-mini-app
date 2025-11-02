@@ -1,7 +1,7 @@
 import {useEffect} from 'react';
 import {mainButton} from '@tma.js/sdk-react';
 
-export function MainButton({text, onClick}: { text: string, onClick: () => void }) {
+export function MainButton({text, onClick, disabled}: { text: string, onClick: () => void, disabled: boolean }) {
 
   useEffect(() => {
     mainButton.show();
@@ -10,6 +10,13 @@ export function MainButton({text, onClick}: { text: string, onClick: () => void 
       mainButton.hide();
     };
   }, [text]);
+
+  useEffect(() => {
+    if (disabled)
+      mainButton.disable()
+    else
+      mainButton.enable()
+  }, [disabled])
 
   useEffect(() => {
     mainButton.onClick(onClick);

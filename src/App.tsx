@@ -11,6 +11,7 @@ export function App() {
   const [query, setQuery] = useState('r');
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
+  const [test, setTest] = useState('');
 
   const handleSetMinPrice = (e: any) => {
     const value = e.target.value;
@@ -24,7 +25,8 @@ export function App() {
     setMaxPrice(onlyNumbers);
   };
 
-  const handleClick = useCallback(() => { // <-- Оберните в useCallback
+  const handleClick = useCallback(() => {
+    setTest(initData!)
     const data: string = JSON.stringify({
       query: query,
       minPrice: minPrice,
@@ -68,11 +70,15 @@ export function App() {
           placeholder="Max price"
           inputMode="numeric"
         />
+        <Input
+          value={test}
+        />
       </List>
 
       <MainButton
         onClick={handleClick}
         text="Create new Agent"
+        disabled={!initData}
       />
     </AppRoot>
   )
