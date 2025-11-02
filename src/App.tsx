@@ -1,11 +1,11 @@
 import {useCallback, useState} from 'react';
-import {useLaunchParams, useSignal, miniApp, sendData} from '@tma.js/sdk-react';
+import {useLaunchParams, useRawInitData, useSignal, miniApp, sendData} from '@tma.js/sdk-react';
 import {AppRoot, Input, List, Placeholder} from '@telegram-apps/telegram-ui';
 import {MainButton} from "@/components/MainButton.ts";
 import {Icon12Search} from "@/icons/12/search.tsx";
 
 export function App() {
-  const lp = useLaunchParams();
+  const launchParams = useLaunchParams();
   const isDark = useSignal(miniApp.isDark);
   const [query, setQuery] = useState('');
   const [minPrice, setMinPrice] = useState('');
@@ -28,7 +28,7 @@ export function App() {
       query: query,
       minPrice: minPrice,
       maxPrice: maxPrice,
-      user: lp.t
+      initData: useRawInitData()
     });
     sendData.ifAvailable(data);
   }, [query, minPrice, maxPrice]);
@@ -36,7 +36,7 @@ export function App() {
   return (
     <AppRoot
       appearance={isDark ? 'dark' : 'light'}
-      platform={['macos', 'ios'].includes(lp.tgWebAppPlatform) ? 'ios' : 'base'}
+      platform={['macos', 'ios'].includes(launchParams.tgWebAppPlatform) ? 'ios' : 'base'}
     >
       <Placeholder
         header="Bazar"
