@@ -1,7 +1,7 @@
 import {useEffect} from 'react';
 import {mainButton} from '@tma.js/sdk-react';
 
-export function MainButton({text, onClick, query, minPrice, maxPrice}: { text: string, onClick: () => void, query: string, minPrice: string, maxPrice: string }) {
+export function MainButton({text, onClick}: { text: string, onClick: () => void }) {
 
   useEffect(() => {
     mainButton.show();
@@ -11,10 +11,9 @@ export function MainButton({text, onClick, query, minPrice, maxPrice}: { text: s
     };
   }, [text]);
 
-
   useEffect(() => {
     mainButton.onClick(onClick);
-  }, [onClick, query, minPrice, maxPrice]);
+  }, [onClick]);
 
   return null;
 }
