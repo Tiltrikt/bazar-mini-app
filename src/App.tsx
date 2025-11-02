@@ -42,18 +42,18 @@ export function App() {
       <List>
         <Input
           before={<Icon12Search/>}
-          value={query}
+          value={queryRef.current}
           onChange={e => setQuery(e.target.value)}
           placeholder="Search query"
         />
         <Input
-          value={minPrice}
+          value={maxPriceRef.current}
           onChange={e => handleSetMinPrice(e)}
           placeholder="Min price"
           inputMode="numeric"
         />
         <Input
-          value={maxPrice}
+          value={maxPriceRef.current}
           onChange={e => handleSetMaxPrice(e)}
           placeholder="Max price"
           inputMode="numeric"
