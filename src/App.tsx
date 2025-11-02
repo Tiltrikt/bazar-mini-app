@@ -1,6 +1,6 @@
 import {useState, useCallback} from 'react';
 import {useLaunchParams, useSignal, miniApp, sendData} from '@tma.js/sdk-react';
-import {AppRoot, Input, List} from '@telegram-apps/telegram-ui';
+import {AppRoot, Input, List, Placeholder} from '@telegram-apps/telegram-ui';
 import {MainButton} from "@/components/MainButton.ts";
 import {Icon12Search} from "@/icons/12/search.tsx";
 
@@ -38,6 +38,16 @@ export function App() {
       appearance={isDark ? 'dark' : 'light'}
       platform={['macos', 'ios'].includes(lp.tgWebAppPlatform) ? 'ios' : 'base'}
     >
+      <Placeholder
+        header="Bazar"
+        description="Search agents for you"
+      >
+        <img
+          alt="Telegram sticker"
+          src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExdmFoZTRmZnlpOXByNXEyOTRtMmF2YmxmZG9yM2l5c2dzYjR0NjU0MyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7btOfPKQb7mCLxBu/giphy.gif"
+          style={{ display: 'block', width: '144px', height: '144px' }}
+        />
+      </Placeholder>
       <List>
         <Input
           before={<Icon12Search/>}
