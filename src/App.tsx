@@ -24,7 +24,7 @@ export function App() {
   };
 
   const handleClick = useCallback(() => {
-    sendData("hello world");
+    sendData(query);
   }, [query, minPrice, maxPrice]);
 
   return (
