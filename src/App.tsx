@@ -12,9 +12,9 @@ import {Icon12Search} from "@/icons/12/search.tsx";
 export function App() {
   const launchParams = useLaunchParams();
   const isDark = useSignal(miniApp.isDark);
-  const [query, setQuery] = useState('rakaaa');
-  const [minPrice, setMinPrice] = useState('');
-  const [maxPrice, setMaxPrice] = useState('');
+  const [query, setQuery] = useState('');
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(0);
   const [agentName, setAgentName] = useState('');
 
   const handleSetMinPrice = (e: any) => {
