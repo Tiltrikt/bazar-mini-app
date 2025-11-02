@@ -13,6 +13,9 @@ export function MainButton({text, onClick}: { text: string, onClick: () => void 
 
   useEffect(() => {
     mainButton.onClick(onClick);
+    return () => {
+      mainButton.offClick(onClick);
+    }
   }, [onClick]);
 
   return null;
