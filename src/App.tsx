@@ -12,9 +12,8 @@ import {Icon12Search} from "@/icons/12/search.tsx";
 
 export function App() {
   const launchParams = useLaunchParams();
-  const { initDataRaw } = retrieveLaunchParams();
   const isDark = useSignal(miniApp.isDark);
-  const [query, setQuery] = useState('rak');
+  const [query, setQuery] = useState('raka');
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
 
@@ -31,6 +30,7 @@ export function App() {
   };
 
   const handleClick = useCallback(() => {
+    const { initDataRaw } = retrieveLaunchParams();
     const data: string = JSON.stringify({
       query: query,
       minPrice: minPrice,
@@ -38,7 +38,7 @@ export function App() {
       initData: initDataRaw
     });
     sendData.ifAvailable(data);
-  }, [query, minPrice, maxPrice, initDataRaw]);
+  }, [query, minPrice, maxPrice]);
 
   return (
     <AppRoot
