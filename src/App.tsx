@@ -32,7 +32,9 @@ export function App() {
     })
     setTest(data);
     console.log("Clicker");
-    sendData(data);
+    if (sendData.isAvailable()) {
+      sendData(data);
+    }
   }, [query, maxPrice, minPrice]);
 
   return (

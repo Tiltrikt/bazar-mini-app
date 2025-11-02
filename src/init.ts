@@ -66,8 +66,6 @@ export async function init(options: {
   if (miniApp.mount.isAvailable()) {
     themeParams.mount();
     miniApp.mount();
-    // miniApp.setHeaderColor('secondary_bg_color');
-    // miniApp.setBottomBarColor('secondary_bg_color');
     themeParams.bindCssVars();
 
     const tp = {
@@ -85,21 +83,6 @@ export async function init(options: {
       subtitle_text_color: themeParams.state().subtitle_text_color,
       text_color: themeParams.state().text_color,
     } as const;
-    // const tp = {
-    //   accent_text_color: '#000000',
-    //   bg_color: '#b700ff',
-    //   button_color: '#00fa16',
-    //   button_text_color: '#1c00fd',
-    //   destructive_text_color: '#1c00fd',
-    //   header_bg_color: '#1c00fd',
-    //   hint_color: '#1c00fd',
-    //   link_color: '#ef0000',
-    //   secondary_bg_color: '#ef0000',
-    //   section_bg_color: '#ef0000',
-    //   section_header_text_color: '#ef0000',
-    //   subtitle_text_color: '#ef0000',
-    //   text_color: '#ef0000',
-    // } as const;
     emitEvent('theme_changed', { theme_params: tp });
   }
 
