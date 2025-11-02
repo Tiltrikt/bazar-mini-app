@@ -43,7 +43,7 @@ export function App() {
         <Input
           before={<Icon12Search/>}
           value={queryRef.current}
-          onChange={e => setQuery(e.target.value)}
+          onChange={e => setQuery(e)}
           placeholder="Search query"
         />
         <Input
