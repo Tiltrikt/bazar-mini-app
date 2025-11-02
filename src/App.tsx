@@ -44,7 +44,7 @@ export function App() {
       >
         <img
           alt="Telegram sticker"
-          src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExdmFoZTRmZnlpOXByNXEyOTRtMmF2YmxmZG9yM2l5c2dzYjR0NjU0MyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7btOfPKQb7mCLxBu/giphy.gif"
+          src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Moon_rotating_full_220px.gif"
           style={{ display: 'block', width: '144px', height: '144px' }}
         />
       </Placeholder>
