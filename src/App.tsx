@@ -35,10 +35,9 @@ export function App() {
       minPrice: minPrice,
       maxPrice: maxPrice,
       agentName: agentName,
-      initData: launchParams.tgWebAppData!.chat!
     });
     sendData.ifAvailable(data);
-  }, [query, minPrice, maxPrice, agentName, launchParams]);
+  }, [query, minPrice, maxPrice, agentName]);
 
   return (
     <AppRoot
