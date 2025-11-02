@@ -4,7 +4,6 @@ import {
   useSignal,
   miniApp,
   sendData,
-  retrieveRawInitData
 } from '@tma.js/sdk-react';
 import {AppRoot, Input, List, Placeholder} from '@telegram-apps/telegram-ui';
 import {MainButton} from "@/components/MainButton.ts";
@@ -30,15 +29,14 @@ export function App() {
   };
 
   const handleClick = useCallback(() => {
-    const initDataRaw = retrieveRawInitData();
     const data: string = JSON.stringify({
       query: query,
       minPrice: minPrice,
       maxPrice: maxPrice,
-      initData: initDataRaw
+      initData: launchParams.tgWebAppVersion
     });
     sendData.ifAvailable(data);
-  }, [query, minPrice, maxPrice]);
+  }, [query, minPrice, maxPrice, launchParams]);
 
   return (
     <AppRoot
@@ -79,7 +77,6 @@ export function App() {
       <MainButton
         onClick={handleClick}
         text="Create new Agent"
-        disabled={!retrieveRawInitData()}
       />
     </AppRoot>
   )
