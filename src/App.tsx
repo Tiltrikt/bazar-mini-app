@@ -24,13 +24,7 @@ export function App() {
   };
 
   const handleClick = useCallback(() => {
-    sendData(JSON.stringify(
-      {
-        "query": query,
-        "minPrice": minPrice,
-        "maxPrice": maxPrice
-      }
-    ));
+    sendData(query);
   }, [query, minPrice, maxPrice]);
 
   return (
