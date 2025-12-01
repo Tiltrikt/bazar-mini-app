@@ -25,6 +25,8 @@ export async function init(options: {
   setDebug(options.debug);
   initSDK();
 
+
+
   // Add Eruda if needed.
   options.eruda && void import('eruda').then(({default: eruda}) => {
     eruda.init();
